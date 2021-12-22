@@ -1,8 +1,16 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"net/http"
+	"training-go-products/handler"
+)
+
+const productsPath = "products"
 
 func main() {
-	fmt.Println("Soy un solitario y triste proyecto de go, ojala algun dia algun dev me programe")
-	fmt.Println("Aqui arranca al camino de los devs para que el proyecto no se sienta solitario")
+	productsHandler := http.HandlerFunc(handler.HandlerProducts)
+	productHandler := http.HandlerFunc(handler.HandlerProduct)
+	http.Handle(fmt.Sprintf("%s", productsPath), productsHandler)
+	http.Handle(fmt.Sprintf("%s/", productsPath), productHandler)
 }
