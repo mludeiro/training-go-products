@@ -17,16 +17,17 @@ var (
 func GetProducts(w http.ResponseWriter, r *http.Request) {
 	productList, err := database.GetProductList()
 	if err != nil {
+		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
 	j, err := json.Marshal(productList)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 	_, err = w.Write(j)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 }
 
@@ -51,6 +52,7 @@ func PostProducts(w http.ResponseWriter, r *http.Request) {
 func GetProduct(w http.ResponseWriter, r *http.Request, productID uint) {
 	product, err := database.GetProduct(productID)
 	if err != nil {
+		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
 		return
 	}
@@ -66,7 +68,7 @@ func GetProduct(w http.ResponseWriter, r *http.Request, productID uint) {
 	}
 	_, err = w.Write(j)
 	if err != nil {
-		log.Fatal(err)
+		log.Print(err)
 	}
 }
 
