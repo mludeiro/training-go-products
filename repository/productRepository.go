@@ -9,18 +9,22 @@ type Product struct {
 	Database *database.Database
 }
 
-func (this *Product) Get(id uint) (*entity.Product, error) {
+func GetProductList() ([]*entity.Product, error) {
 	panic("Not implemented")
 }
 
-func (this *Product) GetListOfProducts() (*entity.Product, error) {
+func InsertProduct(product entity.Product) (uint, error) {
 	panic("Not implemented")
 }
 
-func (this *Product) Add() (*entity.Product, error) {
+func GetProduct(productID uint) (*entity.Product, error) {
 	panic("Not implemented")
 }
 
-func (this *Product) Delete(id uint) (*entity.Product, error) {
+func UpdateProduct(product entity.Product) error {
+	panic("Not implemented")
+}
+
+func RemoveProduct(productID uint) error {
 	panic("Not implemented")
 }
