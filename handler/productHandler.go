@@ -5,8 +5,8 @@ import (
 	"fmt"
 	"log"
 	"net/http"
-	"training-go-products/database"
 	"training-go-products/entity"
+	"training-go-products/repository"
 )
 
 var (
@@ -15,7 +15,7 @@ var (
 )
 
 func GetProducts(w http.ResponseWriter, r *http.Request) {
-	productList, err := database.GetProductList()
+	productList, err := repository.GetProductList()
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -39,7 +39,7 @@ func PostProducts(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	productID, err := database.InsertProduct(product)
+	productID, err := repository.InsertProduct(product)
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusBadRequest)
@@ -50,7 +50,7 @@ func PostProducts(w http.ResponseWriter, r *http.Request) {
 }
 
 func GetProduct(w http.ResponseWriter, r *http.Request, productID uint) {
-	product, err := database.GetProduct(productID)
+	product, err := repository.GetProduct(productID)
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
@@ -84,7 +84,7 @@ func PutProduct(w http.ResponseWriter, r *http.Request, productID uint) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	err = database.UpdateProduct(product)
+	err = repository.UpdateProduct(product)
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusBadRequest)
@@ -93,7 +93,7 @@ func PutProduct(w http.ResponseWriter, r *http.Request, productID uint) {
 }
 
 func DeleteProduct(w http.ResponseWriter, r *http.Request, productID uint) {
-	err := database.RemoveProduct(productID)
+	err := repository.RemoveProduct(productID)
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusInternalServerError)
