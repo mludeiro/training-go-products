@@ -19,11 +19,11 @@ func (this *WebRouter) GetRouter() *mux.Router {
 
 	sm := mux.NewRouter()
 
-	sm.Methods(http.MethodGet).Path("/products/{id:[0-9]+}").HandlerFunc(handler.HandlerProduct)
-	sm.Methods(http.MethodGet).Path("/products").HandlerFunc(handler.HandlerProducts)
-	sm.Methods(http.MethodDelete).Path("/products/{id:[0-9]+}").HandlerFunc(handler.HandlerProduct)
-	sm.Methods(http.MethodPut).Path("/products/{id:[0-9]+}").HandlerFunc(handler.HandlerProduct)
-	sm.Methods(http.MethodPost).Path("/products").HandlerFunc(handler.HandlerProducts)
+	sm.Methods(http.MethodGet).Path("/api/v1/products/{id:[0-9]+}").HandlerFunc(handler.HandlerProduct)
+	sm.Methods(http.MethodGet).Path("/api/v1/products").HandlerFunc(handler.HandlerProducts)
+	sm.Methods(http.MethodDelete).Path("/api/v1/products/{id:[0-9]+}").HandlerFunc(handler.HandlerProduct)
+	sm.Methods(http.MethodPut).Path("/api/v1/products/{id:[0-9]+}").HandlerFunc(handler.HandlerProduct)
+	sm.Methods(http.MethodPost).Path("/api/v1/products").HandlerFunc(handler.HandlerProducts)
 
 	this.router = sm
 	return this.router
