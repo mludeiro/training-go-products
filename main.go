@@ -6,6 +6,6 @@ import (
 
 func main() {
 	cont := container.NewContainer()
-	cont.DataBase.InitializeSqlite().Migrate().CreateTestData()
+	cont.DataBase.InitializeMySql().Migrate().CreateTestData()
 	cont.WebServer.CreateServer()
 }
