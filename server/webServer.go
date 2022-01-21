@@ -12,11 +12,11 @@ type WebServer struct {
 
 func (this *WebServer) CreateServer() {
 	this.server = http.Server{
-		Addr:    ":5002",                 // configure the bind address
+		Addr:    ":5001",                 // configure the bind address
 		Handler: this.Router.GetRouter(), // set the default handler
 	}
 
-	tools.GetLogger().Println("Starting server on port 5002")
+	tools.GetLogger().Println("Starting server on port 5001")
 
 	err := this.server.ListenAndServe()
 	if err != nil {
