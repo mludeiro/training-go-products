@@ -18,7 +18,9 @@ func InsertProduct(product entity.Product) (uint, error) {
 }
 
 func GetProduct(productID uint) (*entity.Product, error) {
-	panic("Not implemented")
+	var product *entity.Product
+	result := db.GetDB().First(&product, productID)
+	return product, result.Error
 }
 
 func UpdateProduct(product entity.Product) error {
