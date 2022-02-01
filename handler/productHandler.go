@@ -39,14 +39,18 @@ func PostProducts(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
-	productID, err := repository.InsertProduct(product)
+	products, err := repository.InsertProduct(product)
 	if err != nil {
 		log.Print(err)
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+	if products == nil {
+		log.Print(err)
+		w.WriteHeader(http.StatusBadRequest)
+	}
 	w.WriteHeader(http.StatusCreated)
-	w.Write([]byte(fmt.Sprintf(`{"productId":%d}`, productID)))
+	w.Write([]byte(fmt.Sprintf(`{"productId":%d}`, products.ID)))
 }
 
 func GetProduct(w http.ResponseWriter, r *http.Request, productID uint) {

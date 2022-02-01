@@ -13,8 +13,9 @@ func GetProductList() ([]*entity.Product, error) {
 	return products, result.Error
 }
 
-func InsertProduct(product entity.Product) (uint, error) {
-	panic("Not implemented")
+func InsertProduct(product entity.Product) (*entity.Product, error) {
+	result := db.GetDB().Create(&product)
+	return &product, result.Error
 }
 
 func GetProduct(productID uint) (*entity.Product, error) {
