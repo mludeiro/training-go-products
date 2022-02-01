@@ -25,7 +25,8 @@ func GetProduct(productID uint) (*entity.Product, error) {
 }
 
 func UpdateProduct(product entity.Product) error {
-	panic("Not implemented")
+	result := db.GetDB().Model(&product).Update("name", product.Name)
+	return result.Error
 }
 
 func RemoveProduct(productID uint) error {
