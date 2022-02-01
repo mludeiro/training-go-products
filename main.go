@@ -2,10 +2,13 @@ package main
 
 import (
 	"training-go-products/container"
+	"training-go-products/database"
 )
 
+var Cont container.Container
+
 func main() {
-	cont := container.NewContainer()
-	cont.DataBase.InitializeMySql().Migrate().CreateTestData()
-	cont.WebServer.CreateServer()
+	Cont := container.NewContainer()
+	Cont.DataBase = database.GetInstance()
+	Cont.WebServer.CreateServer()
 }
