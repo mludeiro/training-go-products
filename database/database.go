@@ -27,19 +27,19 @@ func (db *Database) InitializeMySql() *Database {
 	return db
 }
 
-func (db *Database) GetDB() *gorm.DB {
-	return db.gormDB
+func (db *Database) Migrate() *Database {
+	db.gormDB.AutoMigrate(&entity.Product{})
+	return db
 }
 
-func (db *Database) Migrate() *Database {
-	db.GetDB().AutoMigrate(&entity.Product{})
-	return db
+func (db *Database) GetDB() *gorm.DB {
+	return db.gormDB
 }
 
 func (db *Database) CreateTestData() *Database {
 	productTest := entity.Product{Name: "HelloImYellow"}
 
-	db.GetDB().Create(&productTest)
+	db.gormDB.Create(&productTest)
 
 	return db
 }

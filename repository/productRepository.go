@@ -5,12 +5,12 @@ import (
 	"training-go-products/entity"
 )
 
-type Product struct {
-	Database *database.Database
-}
+var db database.Database = *database.GetInstance()
 
 func GetProductList() ([]*entity.Product, error) {
-	panic("Not implemented")
+	var products []*entity.Product
+	result := db.GetDB().Find(&products)
+	return products, result.Error
 }
 
 func InsertProduct(product entity.Product) (uint, error) {
