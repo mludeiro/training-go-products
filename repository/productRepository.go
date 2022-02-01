@@ -26,5 +26,7 @@ func UpdateProduct(product entity.Product) error {
 }
 
 func RemoveProduct(productID uint) error {
-	panic("Not implemented")
+	//missing logic for invoices
+	result := db.GetDB().Delete(&entity.Product{}, productID)
+	return result.Error
 }
